@@ -51,14 +51,14 @@ services:
       - media
     environment:
       UPDATE_TOKEN: ${UPDATE_TOKEN:-}
-      PROJECT_DIR: /home/mrobot/projects/media-server
+      PROJECT_DIR: ${MEDIA_SERVER_PROJECT_DIR:-${PWD}}
       SELF_SERVICE: updater
       DOCKER_CONFIG: /tmp/docker
     volumes:
       # Required so the updater can pull images and recreate this Compose stack.
       - /var/run/docker.sock:/var/run/docker.sock
       # Mount at the same absolute path used on the host so Compose bind sources resolve correctly.
-      - ./:/home/mrobot/projects/media-server:ro
+      - ./:${MEDIA_SERVER_PROJECT_DIR:-${PWD}}:ro
     healthcheck:
       test: ["CMD-SHELL", "wget -q --spider http://127.0.0.1:8080/health || exit 1"]
       interval: 30s

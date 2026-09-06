@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-PROJECT_DIR="/home/mrobot/projects/media-server"
+PROJECT_DIR="${MEDIA_SERVER_PROJECT_DIR:-$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd -P)}"
 COMPOSE_ARGS=(
   --env-file .env
   -f docker-compose.yml
@@ -199,6 +199,7 @@ open_landing_page() {
 
 prepare_project() {
   cd "$PROJECT_DIR"
+  export MEDIA_SERVER_PROJECT_DIR="$PROJECT_DIR"
 
   echo "Project: $PROJECT_DIR"
   echo

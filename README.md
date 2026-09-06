@@ -2,6 +2,12 @@
 
 Docker Compose stack for a local Ubuntu home media server.
 
+Release candidate: **1.0.0-rc.1**. Start with the [User Manual](docs/USER_MANUAL.md)
+for installation and daily use. See the [Release Guide](docs/RELEASING.md) to
+package the project and upload it to GitHub, and the [Changelog](CHANGELOG.md)
+for version history. This is a Docker Compose distribution, not a standalone
+desktop installer. Container images are downloaded separately.
+
 ## Services
 
 | Service | Purpose | Default URL |
@@ -60,6 +66,7 @@ Set these values before starting:
 
 | Variable | Description |
 | --- | --- |
+| `MEDIA_SERVER_PROJECT_DIR` | Absolute installation directory for the updater's matching host/container mount. Blank uses `PWD`; run Compose from the project root. The launcher exports its own project path. |
 | `LAN_BIND_IP` | Server LAN IP to bind published ports. Use the address your Samsung TV can reach. |
 | `PUID` / `PGID` | User and group IDs that own `./config` and `MEDIA_ROOT`. |
 | `TZ` | Container timezone. |
@@ -127,9 +134,11 @@ Replace `1000:1000` if your `.env` uses different IDs.
 
 ## Jellyfin GPU Transcoding
 
-Jellyfin's app config is set for NVIDIA NVENC/NVDEC hardware acceleration. The
-base Compose file still works without a GPU, but this server should normally be
-started with `docker-compose.gpu.yml` so Jellyfin can see the GTX 1080.
+The existing installation uses NVIDIA NVENC/NVDEC hardware acceleration.
+New installations must configure it in the Jellyfin dashboard; private app
+settings are not included in the release. The base Compose file works without
+a GPU. The launcher and web updater currently use `docker-compose.gpu.yml`
+and require a configured NVIDIA GPU; use manual base-Compose commands for CPU-only operation.
 
 Check the host driver:
 
@@ -272,7 +281,8 @@ docker compose --env-file .env -f docker-compose.yml -f docker-compose.gpu.yml p
 
 ### Desktop Shortcut
 
-A desktop shortcut is installed at:
+The existing host has a desktop shortcut at the path below. Release packages
+do not install desktop shortcuts automatically:
 
 ```text
 ~/Desktop/Start Media Server.desktop

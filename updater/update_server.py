@@ -8,7 +8,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 
-PROJECT_DIR = Path(os.environ.get("PROJECT_DIR", "/home/mrobot/projects/media-server"))
+PROJECT_DIR = Path(os.environ.get("PROJECT_DIR", "/project"))
 LOG_FILE = Path("/tmp/media-update.log")
 COMPOSE_ARGS = [
     "--env-file",
