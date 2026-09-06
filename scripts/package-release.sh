@@ -26,7 +26,8 @@ files=(
   LICENSE THIRD_PARTY.md CHANGELOG.md docker-compose.yml docker-compose.gpu.yml
   docs/USER_MANUAL.md docs/RELEASING.md
   scripts/start-media-server.sh scripts/package-release.sh
-  landing/index.html landing/nginx.conf updater/Dockerfile updater/update_server.py
+  landing/index.html landing/nginx.conf landing/assets/homereel-logo.png
+  landing/assets/LOGO.md updater/Dockerfile updater/update_server.py
   .github/workflows/validate.yml
 )
 git archive --format=tar.gz --prefix="$name/" -o "dist/$name.tar.gz" HEAD -- "${files[@]}"

@@ -19,12 +19,12 @@ second README or license. From this local project directory, replace the URL
 below with the repository URL GitHub gives you:
 
 ```bash
-git remote add origin https://github.com/YOUR_ACCOUNT/YOUR_REPOSITORY.git
+git remote add origin https://github.com/MohammadRobot/HomeReel.git
 git push -u origin HEAD
 ```
 
 If `origin` already exists, inspect `git remote -v` and use the correct remote.
-The current local branch is `master`; using `HEAD` avoids requiring a rename.
+The project's default branch is `main`.
 Upload the tracked repository through Git, not the whole project folder through
 a browser: the working folder contains private runtime files. Never force-add
 ignored files. GitHub Actions validates scripts and Compose on pushes and PRs.

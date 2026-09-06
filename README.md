@@ -1,5 +1,7 @@
 # HomeReel
 
+![HomeReel logo](landing/assets/homereel-logo.png)
+
 Your media. At home.
 
 HomeReel is a Docker Compose stack for a local Ubuntu home media server.
