@@ -1,0 +1,55 @@
+# Local environment and secrets.
+.env
+.env.*
+!.env.example
+*.env.local
+*.env.*.local
+
+# Runtime service state. These folders contain app databases, logs, API keys,
+# passwords, sessions, and indexer settings.
+config/
+
+# Media/runtime data, in case MEDIA_ROOT or download folders are ever placed
+# inside this project directory.
+media/
+downloads/
+incomplete/
+movies/
+tv/
+
+# Local Compose overrides.
+docker-compose.override.yml
+compose.override.yml
+
+# Runtime artifacts.
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.log
+*.pid
+*.tmp
+*.bak
+*.swp
+*.swo
+
+# OS and editor files.
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local Samsung client checkouts and generated build artifacts.
+/jellyfin-web/
+/jellyfin-tizen/
+node_modules/
+*.wgt
+*.p12
+*.pfx
+
+# Python bytecode and local agent state.
+__pycache__/
+*.py[cod]
+/.agents/
+/.codex/
+/dist/

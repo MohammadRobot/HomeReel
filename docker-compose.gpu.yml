@@ -1,0 +1,13 @@
+services:
+  jellyfin:
+    environment:
+      # Required by the NVIDIA Container Toolkit for NVENC/NVDEC transcoding.
+      NVIDIA_VISIBLE_DEVICES: ${JELLYFIN_NVIDIA_VISIBLE_DEVICES:-all}
+      NVIDIA_DRIVER_CAPABILITIES: ${JELLYFIN_NVIDIA_DRIVER_CAPABILITIES:-compute,video,utility}
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: ${JELLYFIN_NVIDIA_GPU_COUNT:-all}
+              capabilities: [gpu]
