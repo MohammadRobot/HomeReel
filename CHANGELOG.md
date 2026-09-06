@@ -2,7 +2,7 @@
 
 ## 1.0.0-rc.1
 
-Initial packaged release candidate of the Ubuntu home media server stack.
+Initial packaged release candidate of HomeReel, the Ubuntu home media server stack.
 
 - Jellyfin, qBittorrent, Sonarr, Radarr, Jackett, landing page, updater, and Watchtower.
 - Explicit container image versions and LAN-bound service ports.

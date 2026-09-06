@@ -1,6 +1,8 @@
-# Media Server
+# HomeReel
 
-Docker Compose stack for a local Ubuntu home media server.
+Your media. At home.
+
+HomeReel is a Docker Compose stack for a local Ubuntu home media server.
 
 Release candidate: **1.0.0-rc.1**. Start with the [User Manual](docs/USER_MANUAL.md)
 for installation and daily use. See the [Release Guide](docs/RELEASING.md) to

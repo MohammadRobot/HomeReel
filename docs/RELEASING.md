@@ -2,7 +2,7 @@
 
 ## Distribution model
 
-Media Server is distributed as a versioned Docker Compose source package.
+HomeReel is distributed as a versioned Docker Compose source package.
 Users download and extract it, configure `.env`, and launch the containers.
 There is no standalone executable, desktop installer, bundled media, or bundled
 container image. The user manual is Markdown so GitHub renders it directly.
@@ -14,7 +14,7 @@ being promoted to a stable release. The project uses the MIT license; see
 
 ## Upload the repository
 
-Create an empty GitHub repository in your account. Do not initialize it with a
+Create an empty GitHub repository named `homereel` in your account. Do not initialize it with a
 second README or license. From this local project directory, replace the URL
 below with the repository URL GitHub gives you:
 
@@ -48,8 +48,8 @@ Check the package before publishing:
 
 ```bash
 cd dist
-sha256sum -c media-server-1.0.0-rc.1.sha256
-tar -tzf media-server-1.0.0-rc.1.tar.gz
+sha256sum -c homereel-1.0.0-rc.1.sha256
+tar -tzf homereel-1.0.0-rc.1.tar.gz
 cd ..
 ```
 
@@ -58,7 +58,7 @@ cd ..
 1. Wait for the repository's validation workflow to pass.
 2. In GitHub, open Releases → Draft a new release.
 3. Create tag `v1.0.0-rc.1` targeting the exact commit used to build the assets.
-4. Use title `Media Server 1.0.0-rc.1` and copy the relevant changelog section
+4. Use title `HomeReel 1.0.0-rc.1` and copy the relevant changelog section
    into the release description. Link to `docs/USER_MANUAL.md` in the repository.
 5. Attach the ZIP, tar.gz, and SHA-256 files from `dist/`.
 6. Mark this candidate as a pre-release. Review the draft, then publish it.

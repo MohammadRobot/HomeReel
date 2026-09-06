@@ -11,7 +11,7 @@ if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[A-Za-z0-9.]+)?$ ]]; then
   echo "Invalid VERSION value." >&2
   exit 1
 fi
-name="media-server-$version"
+name="homereel-$version"
 mkdir -p dist
 for artifact in "dist/$name.tar.gz" "dist/$name.zip" "dist/$name.sha256"; do
   if [ -e "$artifact" ]; then
