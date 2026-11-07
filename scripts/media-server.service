@@ -1,0 +1,19 @@
+[Unit]
+Description=Start and verify the GPU media server
+Requires=docker.service
+Wants=network-online.target
+After=docker.service network-online.target
+RequiresMountsFor=/mnt/data/media /home/mrobot/projects/media-server
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/mrobot/projects/media-server
+ExecStart=/bin/bash /home/mrobot/projects/media-server/scripts/start-media-server.sh start
+RemainAfterExit=yes
+Restart=on-failure
+RestartSec=30
+TimeoutStartSec=600
+
+[Install]
+WantedBy=multi-user.target

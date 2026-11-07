@@ -1,5 +1,25 @@
 # HomeReel
 
+## Automatic startup
+
+`scripts/start-media-server.sh` repairs missing Docker network attachments by
+recreating affected containers on start and update. Persistent bind mounts are retained.
+The system service starts the GPU stack after Docker, networking, and media mounts,
+checks HTTP and GPU availability, and retries failed starts every 30 seconds.
+No additional environment variables are required; the existing `.env` is used.
+
+Install on this host with:
+
+```sh
+sudo install -m 644 scripts/media-server.service /etc/systemd/system/media-server.service
+sudo systemctl daemon-reload
+sudo systemctl enable --now media-server.service
+```
+
+The unit uses `/home/mrobot/projects/media-server`; adjust it when moving the project.
+Check boot results with `systemctl status media-server` and
+`journalctl -u media-server -b`. Container restart policies also remain enabled.
+
 ![HomeReel logo](landing/assets/homereel-logo.png)
 
 Your media. At home.
@@ -877,7 +897,23 @@ Published WebUI ports bind to `LAN_BIND_IP`. Do not set `LAN_BIND_IP` to a publi
 
 Containers communicate over the `media-server` Docker bridge network. Use `qbittorrent:8080` when configuring Sonarr or Radarr to talk to qBittorrent internally. Use `jackett:9117` when configuring Radarr or Sonarr to talk to Jackett internally.
 
-## Watchtower
+## Application versions (2026-09-19)
+
+The current configuration pins Jellyfin `12.1`, qBittorrent `5.2.3-1`,
+Sonarr `4.0.20.3014-ls325`, Radarr `6.4.4.10685-ls317`, Jackett
+`v0.24.2624-ls33`, Watchtower `1.22.2`, nginx `1.30.5-alpine`, and the
+updater's Docker CLI base `29.8.1-cli`. qBittorrent was already current.
+The landing page follows nginx's stable release series.
+
+Before upgrading Jellyfin from 10.11 to 12.x, stop it and privately back up
+its complete configuration directory. Database migrations prevent rollback
+without restoring that backup. Remove non-built-in repository plugins before
+migration and perform a full library scan afterward. See the upstream
+[12.0 upgrade notes](https://github.com/jellyfin/jellyfin/releases/tag/v12.0)
+and [12.1 release](https://github.com/jellyfin/jellyfin/releases/tag/v12.1).
+Never run a separate host service on the same published port as its container.
+
+## Watchtower configuration
 
 The stack uses the maintained `nickfedor/watchtower` fork with an explicit image
 tag. Rolling-restart mode is intentionally disabled because the landing page

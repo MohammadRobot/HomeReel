@@ -1,4 +1,4 @@
-ARG UPDATER_BASE_IMAGE=docker:29.8.0-cli
+ARG UPDATER_BASE_IMAGE=docker:29.8.1-cli
 FROM ${UPDATER_BASE_IMAGE}
 
 RUN apk add --no-cache python3

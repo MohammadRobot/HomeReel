@@ -1,5 +1,14 @@
 # Changelog
 
+## Unreleased
+
+- Upgrade Jellyfin to 12.1 with documented database migration precautions.
+- Update Sonarr to 4.0.20.3014-ls325, Radarr to 6.4.4.10685-ls317, and
+  Jackett to v0.24.2624-ls33.
+- Update Watchtower to 1.22.2, stable nginx to 1.30.5-alpine, and the
+  updater Docker CLI base to 29.8.1-cli.
+- Retain qBittorrent 5.2.3-1, the current stable official image.
+
 ## 1.0.0-rc.1
 
 Initial packaged release candidate of HomeReel, the Ubuntu home media server stack.

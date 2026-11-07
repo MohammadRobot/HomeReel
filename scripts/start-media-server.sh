@@ -161,6 +161,19 @@ check_port_listeners() {
   fi
 }
 
+repair_network_attachments() {
+  local service id attached
+  while IFS= read -r service; do
+    id="$("${DOCKER[@]}" compose "${COMPOSE_ARGS[@]}" ps -a -q "$service")"
+    [ -n "$id" ] || continue
+    attached="$("${DOCKER[@]}" inspect --format '{{with index .NetworkSettings.Networks "media-server"}}{{.EndpointID}}{{end}}' "$id")"
+    if [ -z "$attached" ]; then
+      echo "Repairing missing media-server network attachment for $service..."
+      "${DOCKER[@]}" compose "${COMPOSE_ARGS[@]}" up -d --no-deps --force-recreate "$service"
+    fi
+  done < <("${DOCKER[@]}" compose "${COMPOSE_ARGS[@]}" config --services)
+}
+
 print_container_status() {
   echo
   echo "Container status:"
@@ -219,6 +232,7 @@ start_project() {
 
   echo "Starting containers..."
   "${DOCKER[@]}" compose "${COMPOSE_ARGS[@]}" up -d
+  repair_network_attachments
 
   print_container_status
   run_health_checks
@@ -237,6 +251,7 @@ update_project() {
   echo
   echo "Building local images and recreating containers..."
   "${DOCKER[@]}" compose "${COMPOSE_ARGS[@]}" up -d --build --remove-orphans
+  repair_network_attachments
 
   print_container_status
   run_health_checks
