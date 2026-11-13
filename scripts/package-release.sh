@@ -25,7 +25,7 @@ files=(
   .dockerignore .env.example .gitignore AGENTS.md README.md VERSION
   LICENSE THIRD_PARTY.md CHANGELOG.md docker-compose.yml docker-compose.gpu.yml
   docs/USER_MANUAL.md docs/RELEASING.md
-  scripts/start-media-server.sh scripts/package-release.sh
+  scripts/start-media-server.sh scripts/package-release.sh scripts/media-server.service
   landing/index.html landing/nginx.conf landing/assets/homereel-logo.png
   landing/assets/LOGO.md updater/Dockerfile updater/update_server.py
   .github/workflows/validate.yml

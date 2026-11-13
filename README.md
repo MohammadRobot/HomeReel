@@ -897,20 +897,28 @@ Published WebUI ports bind to `LAN_BIND_IP`. Do not set `LAN_BIND_IP` to a publi
 
 Containers communicate over the `media-server` Docker bridge network. Use `qbittorrent:8080` when configuring Sonarr or Radarr to talk to qBittorrent internally. Use `jackett:9117` when configuring Radarr or Sonarr to talk to Jackett internally.
 
-## Application versions (2026-09-19)
+## Application versions (2026-11-13)
 
-The current configuration pins Jellyfin `12.1`, qBittorrent `5.2.3-1`,
-Sonarr `4.0.20.3014-ls325`, Radarr `6.4.4.10685-ls317`, Jackett
-`v0.24.2624-ls33`, Watchtower `1.22.2`, nginx `1.30.5-alpine`, and the
-updater's Docker CLI base `29.8.1-cli`. qBittorrent was already current.
+The current configuration pins Jellyfin `12.4`, qBittorrent `5.3.0-2`,
+Sonarr `4.0.20.3014-ls4`, Radarr `6.4.4.10685-ls326`, Jackett
+`v0.24.3055-ls35`, Watchtower `1.24.0`, nginx `1.30.6-alpine`, and the
+updater's Docker CLI base `29.9.3-cli`. Sonarr and Radarr retain the same
+upstream application versions with updated container builds; LinuxServer's
+Sonarr build suffix has restarted, so `ls4` is newer than the previous `ls325`.
 The landing page follows nginx's stable release series.
+
+The dashboard proxy uses Docker's embedded DNS to refresh the updater address.
+If the updater is temporarily unavailable, the dashboard can still start;
+update API requests fail until the updater becomes reachable. This does not
+replace the launcher's recovery for a missing Docker network attachment.
+No new environment variables are required.
 
 Before upgrading Jellyfin from 10.11 to 12.x, stop it and privately back up
 its complete configuration directory. Database migrations prevent rollback
 without restoring that backup. Remove non-built-in repository plugins before
 migration and perform a full library scan afterward. See the upstream
 [12.0 upgrade notes](https://github.com/jellyfin/jellyfin/releases/tag/v12.0)
-and [12.1 release](https://github.com/jellyfin/jellyfin/releases/tag/v12.1).
+and [12.4 release](https://github.com/jellyfin/jellyfin/releases/tag/v12.4).
 Never run a separate host service on the same published port as its container.
 
 ## Watchtower configuration

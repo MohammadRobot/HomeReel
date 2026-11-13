@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+### Maintenance 2026-11-13
+
+- Update Jellyfin to 12.4, qBittorrent to 5.3.0-2, Jackett to v0.24.3055-ls35,
+  and Watchtower to 1.24.0.
+- Refresh Sonarr and Radarr container builds to 4.0.20.3014-ls4 and
+  6.4.4.10685-ls326; update stable nginx to 1.30.6-alpine and the updater
+  Docker CLI base to 29.9.3-cli.
+- Resolve the updater dynamically through Docker DNS so temporary updater
+  outages do not prevent nginx startup or leave a stale proxy address.
+- Include the boot-reconciliation systemd unit in source release archives.
+
+### Maintenance 2026-09-19
+
 - Upgrade Jellyfin to 12.1 with documented database migration precautions.
 - Update Sonarr to 4.0.20.3014-ls325, Radarr to 6.4.4.10685-ls317, and
   Jackett to v0.24.2624-ls33.
